@@ -23,8 +23,14 @@
   "all_notes": {
     "defaultMessage": "All notes"
   },
+  "author_name": {
+    "defaultMessage": "familyboat"
+  },
   "cancel": {
     "defaultMessage": "Cancel"
+  },
+  "contact_email": {
+    "defaultMessage": "Contact author via email"
   },
   "dark_mode": {
     "defaultMessage": "dark mode"
@@ -43,6 +49,9 @@
   },
   "font_size": {
     "defaultMessage": "font size"
+  },
+  "github_repository": {
+    "defaultMessage": "Github Repository"
   },
   "home": {
     "defaultMessage": "home"
@@ -64,5 +73,8 @@
   },
   "settings": {
     "defaultMessage": "settings"
+  },
+  "source_code": {
+    "defaultMessage": "Repository of the source code"
   }
 }

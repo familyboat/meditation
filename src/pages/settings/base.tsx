@@ -2,9 +2,9 @@ import { Box, Paper } from "@mui/material";
 import React from "react";
 
 type BaseProps = {
-  heading: string;
-  subHeading: string;
-  children: React.ReactNode;
+  heading?: React.ReactNode;
+  subHeading?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export default function Base({

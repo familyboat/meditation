@@ -47,10 +47,22 @@
       "value": "全部笔记"
     }
   ],
+  "author_name": [
+    {
+      "type": 0,
+      "value": "帆船之家"
+    }
+  ],
   "cancel": [
     {
       "type": 0,
       "value": "取消"
+    }
+  ],
+  "contact_email": [
+    {
+      "type": 0,
+      "value": "向作者发送邮件"
     }
   ],
   "dark_mode": [
@@ -87,6 +99,12 @@
     {
       "type": 0,
       "value": "字体大小"
+    }
+  ],
+  "github_repository": [
+    {
+      "type": 0,
+      "value": "Github仓库"
     }
   ],
   "home": [
@@ -129,6 +147,12 @@
     {
       "type": 0,
       "value": "设置"
+    }
+  ],
+  "source_code": [
+    {
+      "type": 0,
+      "value": "源码仓库"
     }
   ]
 }

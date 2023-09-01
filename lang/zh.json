@@ -64,5 +64,17 @@
     },
     "first_time_tip": {
         "defaultMessage": "你好！这是你第一次进入本应用，随便看看吧！"
+    },
+    "author_name": {
+        "defaultMessage": "帆船之家"
+    },
+    "contact_email": {
+        "defaultMessage": "向作者发送邮件"
+    },
+    "github_repository": {
+        "defaultMessage": "Github仓库"
+    },
+    "source_code": {
+        "defaultMessage": "源码仓库"
     }
 }
