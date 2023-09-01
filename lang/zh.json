@@ -76,5 +76,14 @@
     },
     "source_code": {
         "defaultMessage": "源码仓库"
+    },
+    "share_button": {
+        "defaultMessage": "分享"
+    },
+    "share_heading": {
+        "defaultMessage": "分享给你的朋友"
+    },
+    "share_text": {
+        "defaultMessage": "这将会是你最喜欢的一个应用"
     }
 }

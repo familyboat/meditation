@@ -4,6 +4,7 @@ import Theme from "./theme";
 import Font from "./font";
 import Base from "./base";
 import { FormattedMessage, useIntl } from "react-intl";
+import Share from "./share";
 
 export default function Settings () {
   const intl = useIntl();
@@ -47,6 +48,7 @@ export default function Settings () {
           />
         </Link>)}
       />
+      <Share />
     </Box>
   )
 }

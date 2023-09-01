@@ -149,6 +149,24 @@
       "value": "settings"
     }
   ],
+  "share_button": [
+    {
+      "type": 0,
+      "value": "share"
+    }
+  ],
+  "share_heading": [
+    {
+      "type": 0,
+      "value": "Share with your friends"
+    }
+  ],
+  "share_text": [
+    {
+      "type": 0,
+      "value": "This app will be your favorite one"
+    }
+  ],
   "source_code": [
     {
       "type": 0,

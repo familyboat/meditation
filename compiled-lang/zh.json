@@ -149,6 +149,24 @@
       "value": "设置"
     }
   ],
+  "share_button": [
+    {
+      "type": 0,
+      "value": "分享"
+    }
+  ],
+  "share_heading": [
+    {
+      "type": 0,
+      "value": "分享给你的朋友"
+    }
+  ],
+  "share_text": [
+    {
+      "type": 0,
+      "value": "这将会是你最喜欢的一个应用"
+    }
+  ],
   "source_code": [
     {
       "type": 0,

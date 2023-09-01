@@ -74,6 +74,15 @@
   "settings": {
     "defaultMessage": "settings"
   },
+  "share_button": {
+    "defaultMessage": "share"
+  },
+  "share_heading": {
+    "defaultMessage": "Share with your friends"
+  },
+  "share_text": {
+    "defaultMessage": "This app will be your favorite one"
+  },
   "source_code": {
     "defaultMessage": "Repository of the source code"
   }
