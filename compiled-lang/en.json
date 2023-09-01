@@ -71,6 +71,12 @@
       "value": "on"
     }
   ],
+  "font_size": [
+    {
+      "type": 0,
+      "value": "font size"
+    }
+  ],
   "home": [
     {
       "type": 0,

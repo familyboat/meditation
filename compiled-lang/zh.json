@@ -71,6 +71,12 @@
       "value": "开启"
     }
   ],
+  "font_size": [
+    {
+      "type": 0,
+      "value": "字体大小"
+    }
+  ],
   "home": [
     {
       "type": 0,

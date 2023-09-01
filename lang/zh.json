@@ -55,5 +55,8 @@
     },
     "home_introduction": {
         "defaultMessage": "欢迎来到这里！一切都是笔记有关的内容"
+    },
+    "font_size": {
+        "defaultMessage": "字体大小"
     }
 }

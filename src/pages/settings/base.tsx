@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import React from "react";
 
 type BaseProps = {
@@ -14,13 +14,14 @@ export default function Base({
 }: BaseProps) {
   return (
     <>
-      <Box
+      <Paper
         sx={{
           display: "flex",
           alignItems: "center",
           bgcolor: "background.default",
           color: "text.primary",
           borderRadius: 1,
+          padding: '0.6rem'
         }}
       >
         <Box
@@ -44,7 +45,7 @@ export default function Base({
           </Box>
         </Box>
         {children}
-      </Box>
+      </Paper>
     </>
   );
 }

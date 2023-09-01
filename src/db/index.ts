@@ -46,3 +46,12 @@ export function setTheme(newTheme: ThemeProps) {
 export function getTheme(): ThemeProps {
   return localStorage.getItem(themeKey) as ThemeProps;
 }
+
+// font size
+const fontsizeKey = 'fontsize';
+export function setFontsize(newFontsize: string) {
+  localStorage.setItem(fontsizeKey, newFontsize);
+}
+export function getFontsize() {
+  return localStorage.getItem(fontsizeKey);
+}

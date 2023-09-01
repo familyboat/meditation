@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import Locale from "./locale";
 import Theme from "./theme";
+import Font from "./font";
 
 export default function Settings () {
   return (
@@ -13,6 +14,7 @@ export default function Settings () {
     >
       <Theme />
       <Locale />
+      <Font />
     </Box>
   )
 }

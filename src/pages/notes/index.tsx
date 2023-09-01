@@ -21,7 +21,7 @@ export default function Notes () {
     <>
       <Box
         sx={{
-          fontSize: '2rem'
+          fontSize: '1.5rem'
         }}
       >
         <FormattedMessage

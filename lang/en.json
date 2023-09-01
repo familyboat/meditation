@@ -35,6 +35,9 @@
   "dark_mode_on": {
     "defaultMessage": "on"
   },
+  "font_size": {
+    "defaultMessage": "font size"
+  },
   "home": {
     "defaultMessage": "home"
   },

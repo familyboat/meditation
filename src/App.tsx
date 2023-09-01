@@ -8,12 +8,14 @@ import * as locales from "@mui/material/locale";
 import { IntlProvider } from 'react-intl'
 import * as zh from '../compiled-lang/zh.json';
 import * as en from '../compiled-lang/en.json';
-import { ThemeProps, getLocale, getTheme } from './db'
-import { getLocaleByTimezone } from './utils'
+import { ThemeProps, getFontsize, getLocale, getTheme } from './db'
+import { getLocaleByTimezone, modifyRem } from './utils'
 
 export type SupportedLocales = keyof typeof locales;
 
 function App() {
+  const rem = getFontsize();
+  rem && modifyRem(rem);
   const [mode, setMode] = useState<ThemeProps>(getTheme() || 'light');
   const [locale, setLocale] = useState<SupportedLocales>(getLocale() || getLocaleByTimezone());
   const colorMode = useMemo(
