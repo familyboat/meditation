@@ -94,7 +94,7 @@ export default function AddNote({
             />
           </DialogContentText>
           <TextField
-            autoFocus
+            autoComplete='off'
             required
             margin="dense"
             id="title"
@@ -119,6 +119,7 @@ export default function AddNote({
           />
           <TextField
             required
+            autoComplete="off"
             margin="dense"
             id="content"
             label={

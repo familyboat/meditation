@@ -10,7 +10,7 @@ export default function Layout() {
       }}>
         <Outlet />
       </Box>
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, padding: '0 2rem' }}>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
         <NavMenu />
       </Paper>
     </>

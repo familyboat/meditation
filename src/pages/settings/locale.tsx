@@ -3,6 +3,7 @@ import { localeContext, localeMap } from "../../provider";
 import { Autocomplete, TextField } from "@mui/material";
 import { useIntl } from "react-intl";
 import Base from "./base";
+import { setLocale } from "../../db";
 
 export default function Locale() {
   const localeMode = useContext(localeContext);
@@ -10,48 +11,45 @@ export default function Locale() {
   return (
     <>
       <Base
-        heading={
-          intl.formatMessage({
-            defaultMessage: 'locale',
-            id: 'locale'
+        heading={intl.formatMessage({
+          defaultMessage: "locale",
+          id: "locale",
+        })}
+        subHeading={localeMode.locale === "enUS"
+          ? intl.formatMessage({
+            defaultMessage: "English",
+            id: "locale_en",
           })
-        }
-        subHeading={
-          localeMode.locale === 'enUS' ?
-          intl.formatMessage({
-            defaultMessage: 'English',
-            id: 'locale_en'
-          }) :
-          intl.formatMessage({
-            defaultMessage: '简体中文',
-            id: 'locale_zh'
-          })
-        }
+          : intl.formatMessage({
+            defaultMessage: "简体中文",
+            id: "locale_zh",
+          })}
       >
         <Autocomplete
-          options={
-            Object.keys(localeMap)
-          }
+          options={Object.keys(localeMap)}
           getOptionLabel={(key) => localeMap[key]}
           value={localeMode.locale}
           disableClearable
-          onChange={() => {
-            localeMode.toggleLocale()
+          onChange={(_, newLocale) => {
+            localeMode.toggleLocale();
+            setLocale(newLocale);
           }}
           renderInput={(params) => (
-            <TextField {...params} label={
-              intl.formatMessage({
-                id: 'locale',
-                defaultMessage: 'locale'
-              })
-            } fullWidth />
+            <TextField
+              {...params}
+              label={intl.formatMessage({
+                id: "locale",
+                defaultMessage: "locale",
+              })}
+              fullWidth
+            />
           )}
           sx={{
-            inlineSize: '8rem'
+            inlineSize: "8rem",
           }}
           size="small"
-          />
+        />
       </Base>
     </>
-  )
+  );
 }

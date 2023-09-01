@@ -1,4 +1,5 @@
 import { openDB } from "idb";
+import { SupportedLocales } from "../App";
 
 const dbName = 'app';
 const tableName = 'notes'
@@ -24,4 +25,24 @@ export async function getAllNotes(): Promise<NoteProps[]> {
 
 export async function setNote(val: NoteProps) {
   return (await notesDb).add(tableName, val)
+}
+
+// locale
+const localeKey = 'locale'
+export function setLocale(newLocale: string) {
+  localStorage.setItem(localeKey, newLocale)
+}
+
+export function getLocale(): SupportedLocales {
+  return localStorage.getItem(localeKey) as SupportedLocales;
+}
+
+// theme
+export type ThemeProps = 'dark' | 'light'
+const themeKey = 'theme'
+export function setTheme(newTheme: ThemeProps) {
+  localStorage.setItem(themeKey, newTheme);
+}
+export function getTheme(): ThemeProps {
+  return localStorage.getItem(themeKey) as ThemeProps;
 }
