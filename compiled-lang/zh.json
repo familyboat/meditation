@@ -71,6 +71,18 @@
       "value": "开启"
     }
   ],
+  "first_note_tip": [
+    {
+      "type": 0,
+      "value": "还没有任何笔记，点击加号按钮记录它吧！"
+    }
+  ],
+  "first_time_tip": [
+    {
+      "type": 0,
+      "value": "你好！这是你第一次进入本应用，随便看看吧！"
+    }
+  ],
   "font_size": [
     {
       "type": 0,

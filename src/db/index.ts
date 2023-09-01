@@ -55,3 +55,29 @@ export function setFontsize(newFontsize: string) {
 export function getFontsize() {
   return localStorage.getItem(fontsizeKey);
 }
+
+function updateCountOfVisit(key: string) {
+  const oldCount = parseInt(getCountOfVisit(key) || '0');
+  localStorage.setItem(key, (oldCount + 1).toString());
+}
+function getCountOfVisit(key: string) {
+  return localStorage.getItem(key);
+}
+
+// determine whether the visitor views the app for the first time
+const countOfVisitApp = 'countOfVisitApp';
+export function updateCountOfVisitApp() {
+  updateCountOfVisit(countOfVisitApp)
+}
+export function getCountOfVisitApp() {
+  return getCountOfVisit(countOfVisitApp);
+}
+
+// determine whether the visitor has viewd the Notes page
+const countOfVisitNotes = 'countOfVisitNotes';
+export function updateCountOfVisitNotes() {
+  updateCountOfVisit(countOfVisitNotes);
+}
+export function getCountOfVisitNotes() {
+  return getCountOfVisit(countOfVisitNotes)
+}

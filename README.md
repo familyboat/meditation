@@ -28,7 +28,7 @@ If you are developing a production application, we recommend updating the config
 
 ## Intl
 
-npm run extract -- 'src/**/*.tsx' --out-file lang/en.json
+npm run extract -- 'src/\*_/ _.tsx' --out-file lang/en.json
 npm run copy:lang
 npm run compile -- ./lang/en.json --ast --out-file compiled-lang/en.json
 npm run compile -- ./lang/zh.json --ast --out-file compiled-lang/zh.json

@@ -35,6 +35,12 @@
   "dark_mode_on": {
     "defaultMessage": "on"
   },
+  "first_note_tip": {
+    "defaultMessage": "Oops! No notes yet. Click the Add button to create your first note."
+  },
+  "first_time_tip": {
+    "defaultMessage": "Hello, there! This is your first time to visit our app. Feel free to browser."
+  },
   "font_size": {
     "defaultMessage": "font size"
   },

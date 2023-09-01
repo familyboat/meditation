@@ -71,6 +71,18 @@
       "value": "on"
     }
   ],
+  "first_note_tip": [
+    {
+      "type": 0,
+      "value": "Oops! No notes yet. Click the Add button to create your first note."
+    }
+  ],
+  "first_time_tip": [
+    {
+      "type": 0,
+      "value": "Hello, there! This is your first time to visit our app. Feel free to browser."
+    }
+  ],
   "font_size": [
     {
       "type": 0,

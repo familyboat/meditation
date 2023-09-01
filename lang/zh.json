@@ -58,5 +58,11 @@
     },
     "font_size": {
         "defaultMessage": "字体大小"
+    },
+    "first_note_tip": {
+        "defaultMessage": "还没有任何笔记，点击加号按钮记录它吧！"
+    },
+    "first_time_tip": {
+        "defaultMessage": "你好！这是你第一次进入本应用，随便看看吧！"
     }
 }
