@@ -1,0 +1,59 @@
+{
+  "add": {
+    "defaultMessage": "Add"
+  },
+  "add_note": {
+    "defaultMessage": "Add note"
+  },
+  "add_note_content": {
+    "defaultMessage": "content"
+  },
+  "add_note_content_helper": {
+    "defaultMessage": "Please enter the content of the note"
+  },
+  "add_note_tip": {
+    "defaultMessage": "To add a new note, fill in below form"
+  },
+  "add_note_title": {
+    "defaultMessage": "title"
+  },
+  "add_note_title_helper": {
+    "defaultMessage": "Please enter the title of the note"
+  },
+  "all_notes": {
+    "defaultMessage": "All notes"
+  },
+  "cancel": {
+    "defaultMessage": "Cancel"
+  },
+  "dark_mode": {
+    "defaultMessage": "dark mode"
+  },
+  "dark_mode_off": {
+    "defaultMessage": "off"
+  },
+  "dark_mode_on": {
+    "defaultMessage": "on"
+  },
+  "home": {
+    "defaultMessage": "home"
+  },
+  "home_introduction": {
+    "defaultMessage": "Hey, Welcome to our world! This app is about notes."
+  },
+  "locale": {
+    "defaultMessage": "locale"
+  },
+  "locale_en": {
+    "defaultMessage": "English"
+  },
+  "locale_zh": {
+    "defaultMessage": "简体中文"
+  },
+  "notes": {
+    "defaultMessage": "notes"
+  },
+  "settings": {
+    "defaultMessage": "settings"
+  }
+}
