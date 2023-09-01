@@ -6,7 +6,7 @@ export default function Layout() {
   return (
     <>
       <Box sx={{
-        padding: '2rem 2rem 4rem'
+        padding: '1rem 1rem 4.5rem'
       }}>
         <Outlet />
       </Box>
