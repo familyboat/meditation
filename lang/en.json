@@ -2,17 +2,11 @@
   "add": {
     "defaultMessage": "Add"
   },
-  "add_note": {
-    "defaultMessage": "Add note"
-  },
   "add_note_content": {
     "defaultMessage": "content"
   },
   "add_note_content_helper": {
     "defaultMessage": "Please enter the content of the note"
-  },
-  "add_note_tip": {
-    "defaultMessage": "To add a new note, fill in below form"
   },
   "add_note_title": {
     "defaultMessage": "title"
@@ -26,11 +20,11 @@
   "author_name": {
     "defaultMessage": "familyboat"
   },
-  "cancel": {
-    "defaultMessage": "Cancel"
-  },
   "contact_email": {
     "defaultMessage": "Contact author via email"
+  },
+  "create_note": {
+    "defaultMessage": "Create note"
   },
   "current_version": {
     "defaultMessage": "current version"
@@ -43,6 +37,9 @@
   },
   "dark_mode_on": {
     "defaultMessage": "on"
+  },
+  "edit_note": {
+    "defaultMessage": "Edit note"
   },
   "first_note_tip": {
     "defaultMessage": "Oops! No notes yet. Click the Add button to create your first note."

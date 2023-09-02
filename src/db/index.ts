@@ -25,8 +25,16 @@ export async function getAllNotes(): Promise<NoteProps[]> {
   return (await notesDb).getAll(tableName);
 }
 
+export async function getNote(noteId: number): Promise<NoteProps> {
+  return (await notesDb).get(tableName, noteId)
+}
+
 export async function setNote(val: Omit<NoteProps, 'id'>) {
   return (await notesDb).add(tableName, val)
+}
+
+export async function putNote(note: NoteProps) {
+  return (await notesDb).put(tableName, note);
 }
 
 export async function deleteNote(val: NoteProps) {

@@ -26,7 +26,7 @@ export default function Share() {
             id: 'share_heading'
           })
         }
-        subHeading={(<Button variant="contained" onClick={async () => {
+        subHeading={(<Button size="small" variant="contained" onClick={async () => {
           try {
 
             await navigator.share(shareData);

@@ -5,10 +5,10 @@ import { useEffect, useRef } from "react";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { deley } from "../../utils";
 
-export function Note({
+export function NoteListItem({
   note,
   onDeleteNote,
-}: { note: NoteProps, onDeleteNote: (note: NoteProps) => void }) {
+}: { note: NoteProps, onDeleteNote?: (note: NoteProps) => void }) {
   const { title, content, created_at } = note;
   const rootRef = useRef<HTMLElement>();
   const childRef = useRef<HTMLElement>();
@@ -23,7 +23,7 @@ export function Note({
         child.style.opacity = `${ratio < 0.5 ? 0.5 : ratio}`;
         if (ratio > 0.9) {
           await deley(180);
-          onDeleteNote(note);
+          onDeleteNote?.(note);
         }
       });
     }, {

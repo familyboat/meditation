@@ -16,4 +16,6 @@
 
 - 提取要翻译的文本。执行 npm run extract -- 'src/**/*.tsx' --out-file lang/en.json
 - 将提取的英文文件复制到中文文件中，已经翻译过的部分保留下来。执行 npm run copy:lang
-- 翻译结束后，需要进行编译。执行 npm run compile -- ./lang/en.json --ast --out-file compiled-lang/en.json 和 npm run compile -- ./lang/zh.json --ast --out-file compiled-lang/zh.json
+- 翻译结束后，需要进行编译。执行 
+  - npm run compile -- ./lang/en.json --ast --out-file compiled-lang/en.json
+  - npm run compile -- ./lang/zh.json --ast --out-file compiled-lang/zh.json

@@ -88,5 +88,11 @@
     },
     "current_version": {
         "defaultMessage": "当前版本"
+    },
+    "create_note": {
+        "defaultMessage": "创建笔记"
+    },
+    "edit_note": {
+        "defaultMessage": "编辑笔记"
     }
 }

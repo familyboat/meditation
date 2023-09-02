@@ -5,12 +5,6 @@
       "value": "Add"
     }
   ],
-  "add_note": [
-    {
-      "type": 0,
-      "value": "Add note"
-    }
-  ],
   "add_note_content": [
     {
       "type": 0,
@@ -21,12 +15,6 @@
     {
       "type": 0,
       "value": "Please enter the content of the note"
-    }
-  ],
-  "add_note_tip": [
-    {
-      "type": 0,
-      "value": "To add a new note, fill in below form"
     }
   ],
   "add_note_title": [
@@ -53,16 +41,16 @@
       "value": "familyboat"
     }
   ],
-  "cancel": [
-    {
-      "type": 0,
-      "value": "Cancel"
-    }
-  ],
   "contact_email": [
     {
       "type": 0,
       "value": "Contact author via email"
+    }
+  ],
+  "create_note": [
+    {
+      "type": 0,
+      "value": "Create note"
     }
   ],
   "current_version": [
@@ -87,6 +75,12 @@
     {
       "type": 0,
       "value": "on"
+    }
+  ],
+  "edit_note": [
+    {
+      "type": 0,
+      "value": "Edit note"
     }
   ],
   "first_note_tip": [

@@ -65,6 +65,12 @@
       "value": "向作者发送邮件"
     }
   ],
+  "create_note": [
+    {
+      "type": 0,
+      "value": "创建笔记"
+    }
+  ],
   "current_version": [
     {
       "type": 0,
@@ -87,6 +93,12 @@
     {
       "type": 0,
       "value": "开启"
+    }
+  ],
+  "edit_note": [
+    {
+      "type": 0,
+      "value": "编辑笔记"
     }
   ],
   "first_note_tip": [

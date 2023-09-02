@@ -2,9 +2,10 @@ import { createBrowserRouter } from "react-router-dom"
 import Home from "./pages/home"
 import Notes from "./pages/notes"
 import Layout from "./layout";
-import { HomePath, NotesPath, SettingsPath } from "./constant";
+import { HomePath, NotePath, NotesPath, SettingsPath } from "./constant";
 import Settings from "./pages/settings";
 import ErrorPage from "./layout/error";
+import CreateNote from "./pages/notes/createNote";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: NotesPath,
         Component: Notes
+      },
+      {
+        path: NotePath,
+        Component: CreateNote,
       },
       {
         path: SettingsPath,
