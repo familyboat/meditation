@@ -65,6 +65,12 @@
       "value": "向作者发送邮件"
     }
   ],
+  "current_version": [
+    {
+      "type": 0,
+      "value": "当前版本"
+    }
+  ],
   "dark_mode": [
     {
       "type": 0,

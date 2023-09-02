@@ -45,7 +45,7 @@ export default function AddNote({
 
   const handleSubmit = async () => {
     if (title && content) {
-      const note: NoteProps = {
+      const note: Omit<NoteProps, 'id'> = {
         title,
         content,
         'created_at': new Date()
@@ -56,8 +56,6 @@ export default function AddNote({
         await setNote(note);
         onNoteAdded();
         handleClose();
-      } else {
-        console.log('cancel')
       }
     } 
     if (title === null) setTitle('');
@@ -161,4 +159,3 @@ export default function AddNote({
     </>
   );
 }
-

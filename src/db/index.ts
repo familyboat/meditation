@@ -9,6 +9,7 @@ export type NoteProps = {
   title: string,
   content: string,
   created_at: Date,
+  id: number,
 }
 
 const notesDb = openDB(dbName, 1, {
@@ -24,8 +25,12 @@ export async function getAllNotes(): Promise<NoteProps[]> {
   return (await notesDb).getAll(tableName);
 }
 
-export async function setNote(val: NoteProps) {
+export async function setNote(val: Omit<NoteProps, 'id'>) {
   return (await notesDb).add(tableName, val)
+}
+
+export async function deleteNote(val: NoteProps) {
+  await (await notesDb).delete(tableName, val.id);
 }
 
 // localstorage

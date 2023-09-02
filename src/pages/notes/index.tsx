@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import AddNote from "./addNote";
-import { NoteProps, getAllNotes, getVisitedNotesPage, turnOnVisitedNotesPage } from "../../db";
+import { NoteProps, deleteNote, getAllNotes, getVisitedNotesPage, turnOnVisitedNotesPage } from "../../db";
 import { Note } from "./note";
 import { FormattedMessage, useIntl } from "react-intl";
 import {Box} from '@mui/material';
@@ -15,9 +15,14 @@ export default function Notes () {
   const themeMode = theme.palette.mode;
   const intl = useIntl();
   async function fetchNotes () {
-    const allNotes = await getAllNotes();
+    const allNotes = (await getAllNotes()).reverse();
     setAllNotes(allNotes);
   }
+  async function onDeleteNote(note: NoteProps) {
+    await deleteNote(note);
+    await fetchNotes();
+  }
+
   useEffect(() => {
     if (getVisitedNotesPage() === '0') {
       toast.info(intl.formatMessage({
@@ -53,7 +58,7 @@ export default function Notes () {
         }}
       >
         {
-          allNotes.map(note => (<Note note={note} key={note.created_at.getTime()} />))
+          allNotes.map(note => (<Note onDeleteNote={onDeleteNote} note={note} key={note.created_at.getTime()} />))
         }
       </Box>
       <AddNote onNoteAdded={() => {fetchNotes()}} />

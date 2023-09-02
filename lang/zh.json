@@ -85,5 +85,8 @@
     },
     "share_text": {
         "defaultMessage": "这将会是你最喜欢的一个应用"
+    },
+    "current_version": {
+        "defaultMessage": "当前版本"
     }
 }

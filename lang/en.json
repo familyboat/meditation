@@ -32,6 +32,9 @@
   "contact_email": {
     "defaultMessage": "Contact author via email"
   },
+  "current_version": {
+    "defaultMessage": "current version"
+  },
   "dark_mode": {
     "defaultMessage": "dark mode"
   },

@@ -65,6 +65,12 @@
       "value": "Contact author via email"
     }
   ],
+  "current_version": [
+    {
+      "type": 0,
+      "value": "current version"
+    }
+  ],
   "dark_mode": [
     {
       "type": 0,

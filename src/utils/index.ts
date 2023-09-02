@@ -22,3 +22,7 @@ export function incrementByOne(oldValue: string | number) {
   }
   throw Error(`Can not increment ${oldValue}`)
 }
+
+export async function deley(ms:number) {
+  return new Promise(r => setTimeout(r, ms))
+}
