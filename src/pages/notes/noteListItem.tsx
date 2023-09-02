@@ -48,12 +48,16 @@ export function NoteListItem({
         const offset = startPointX.current - e.clientX;
         startPointX.current = e.clientX;
 
-        (rootRef.current as Element).scrollBy({
+        (rootRef.current as HTMLElement).scrollBy({
           left: offset,
         });
       }}
       onPointerUp={() => {
         startPointX.current = null;
+        (rootRef.current as HTMLElement).scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        })
       }}
     >
       <Box
