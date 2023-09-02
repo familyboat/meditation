@@ -1,5 +1,6 @@
 import { openDB } from "idb";
 import { SupportedLocales } from "../App";
+import { incrementByOne } from "../utils";
 
 const dbName = 'app';
 const tableName = 'notes'
@@ -27,6 +28,7 @@ export async function setNote(val: NoteProps) {
   return (await notesDb).add(tableName, val)
 }
 
+// localstorage
 // locale
 const localeKey = 'locale'
 export function setLocale(newLocale: string) {
@@ -56,28 +58,46 @@ export function getFontsize() {
   return localStorage.getItem(fontsizeKey);
 }
 
-function updateCountOfVisit(key: string) {
-  const oldCount = parseInt(getCountOfVisit(key) || '0');
-  localStorage.setItem(key, (oldCount + 1).toString());
-}
-function getCountOfVisit(key: string) {
-  return localStorage.getItem(key);
-}
-
 // determine whether the visitor views the app for the first time
 const countOfVisitApp = 'countOfVisitApp';
 export function updateCountOfVisitApp() {
-  updateCountOfVisit(countOfVisitApp)
+  const oldCount = getCountOfVisitApp();
+  const newCount = incrementByOne(oldCount);
+  localStorage.setItem(countOfVisitApp, newCount.toString());
 }
 export function getCountOfVisitApp() {
-  return getCountOfVisit(countOfVisitApp);
+  return localStorage.getItem(countOfVisitApp) || 0;
 }
 
-// determine whether the visitor has viewd the Notes page
-const countOfVisitNotes = 'countOfVisitNotes';
-export function updateCountOfVisitNotes() {
-  updateCountOfVisit(countOfVisitNotes);
+// determine whether the visitor has viewd the Notes page or Home page
+
+const visitedHomePage = 'visitedHomePage';
+const visitedNotesPage = 'visitedNotesPage';
+function getVisited(page: string) {
+  return localStorage.getItem(page) || '0'
 }
-export function getCountOfVisitNotes() {
-  return getCountOfVisit(countOfVisitNotes)
+export function getVisitedHomePage() {
+  return getVisited(visitedHomePage);
+}
+export function getVisitedNotesPage() {
+  return getVisited(visitedNotesPage);
+}
+function turnOnVisited(page: string) {
+  localStorage.setItem(page, '1');
+}
+export function turnOnVisitedHomePage() {
+  turnOnVisited(visitedHomePage)
+}
+export function turnOnVisitedNotesPage() {
+  turnOnVisited(visitedNotesPage)
+}
+
+const allKey = [localeKey, themeKey, fontsizeKey, countOfVisitApp, visitedHomePage, visitedNotesPage];
+export function clearStaleKeys() {
+  for (let i = 0, len = localStorage.length; i < len; i++) {
+    const key = localStorage.key(i);
+    if (key && !allKey.includes(key)) {
+      localStorage.removeItem(key)
+    }
+  }
 }

@@ -14,7 +14,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { NoteProps, setNote } from "../../db";
 
 type AddNoteProps = {
-  onNoteAdded: (added: boolean) => void
+  onNoteAdded: () => void
 }
 
 export default function AddNote({
@@ -54,7 +54,7 @@ export default function AddNote({
       if (isDialogOpen.current) {
         setIsSaving(true);
         await setNote(note);
-        onNoteAdded(true);
+        onNoteAdded();
         handleClose();
       } else {
         console.log('cancel')

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { FormattedMessage, useIntl } from "react-intl";
-import { getCountOfVisitApp, updateCountOfVisitApp } from "../../db";
+import { getVisitedHomePage, turnOnVisitedHomePage } from "../../db";
 import { useTheme } from "@emotion/react";
 
 export default function Home() {
@@ -12,8 +12,7 @@ export default function Home() {
   const themeMode = theme.palette.mode
 
   useEffect(() => {
-    updateCountOfVisitApp();
-    if (getCountOfVisitApp() === '1') {
+    if (getVisitedHomePage() === '0') {
       toast.info(intl.formatMessage({
         defaultMessage: 'Hello, there! This is your first time to visit our app. Feel free to browser.',
         id: 'first_time_tip'
@@ -21,7 +20,11 @@ export default function Home() {
         position: toast.POSITION.TOP_CENTER
       });
     }
-  })
+    return () => {
+      if (getVisitedHomePage() === '0') turnOnVisitedHomePage();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>

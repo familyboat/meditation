@@ -1,8 +1,14 @@
 import { Outlet } from "react-router-dom";
 import NavMenu from "./navMenu";
 import { Box, Paper } from "@mui/material";
+import {useEffect} from 'react';
+import { updateCountOfVisitApp } from "../db";
 
 export default function Layout() {
+  useEffect(() => {
+    updateCountOfVisitApp();
+  }, [])
+
   return (
     <>
       <Box sx={{
