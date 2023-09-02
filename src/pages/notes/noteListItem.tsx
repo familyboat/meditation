@@ -64,7 +64,7 @@ export function NoteListItem({
           gap: "0.5rem",
           overflowX: "hidden",
           padding: "0.5rem",
-          touchAction: "none",
+          touchAction: "pan-y",
         }}
       >
         <Paper
