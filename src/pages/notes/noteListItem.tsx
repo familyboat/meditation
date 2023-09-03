@@ -1,11 +1,11 @@
 import { Box, Paper } from "@mui/material";
 import { NoteProps } from "../../db";
 import { purple } from "@mui/material/colors";
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { deley } from "../../utils";
 
-export function NoteListItem({
+const NoteListItem = memo(function NoteListItem({
   note,
   onDeleteNote,
 }: { note: NoteProps, onDeleteNote?: (note: NoteProps) => void }) {
@@ -35,8 +35,7 @@ export function NoteListItem({
     return () => {
       observer.unobserve(child)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [note, onDeleteNote]);
 
   return (
     <div
@@ -120,4 +119,6 @@ export function NoteListItem({
       </Box>
     </div>
   );
-}
+})
+
+export default NoteListItem

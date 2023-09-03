@@ -19,12 +19,9 @@ export default function Home() {
       }), {
         position: toast.POSITION.TOP_CENTER
       });
+      turnOnVisitedHomePage();
     }
-    return () => {
-      if (getVisitedHomePage() === '0') turnOnVisitedHomePage();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [intl])
 
   return (
     <>

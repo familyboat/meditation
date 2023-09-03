@@ -26,3 +26,14 @@ export function incrementByOne(oldValue: string | number) {
 export async function deley(ms:number) {
   return new Promise(r => setTimeout(r, ms))
 }
+
+export function throttle(fn: (...arg: Array<unknown>) => void, duration: number) {
+  let shouldWait = false;
+  return function (...arg: Array<unknown>) {
+    if (!shouldWait) {
+      fn.apply({}, arg);
+      shouldWait = true;
+      setTimeout(() => shouldWait = false, duration)
+    }
+  }
+}

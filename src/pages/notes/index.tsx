@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AddNoteButton from "./addNoteButton";
 import {
   deleteNote,
@@ -7,7 +7,7 @@ import {
   NoteProps,
   turnOnVisitedNotesPage,
 } from "../../db";
-import { NoteListItem } from "./noteListItem";
+import NoteListItem from "./noteListItem";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Box } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
@@ -22,14 +22,15 @@ export default function Notes() {
   const theme: any = useTheme();
   const themeMode = theme.palette.mode;
   const intl = useIntl();
-  async function fetchNotes() {
-    const allNotes = (await getAllNotes()).reverse();
-    setAllNotes(allNotes);
-  }
-  async function onDeleteNote(note: NoteProps) {
+
+  const fetchNotes = useCallback(async () => {
+    const notes = (await getAllNotes()).reverse();
+    setAllNotes(notes);
+  }, []);
+  const onDeleteNote = useCallback(async (note: NoteProps) => {
     await deleteNote(note);
     await fetchNotes();
-  }
+  }, [fetchNotes]);
 
   useEffect(() => {
     if (getVisitedNotesPage() === "0") {
@@ -43,13 +44,10 @@ export default function Notes() {
           position: toast.POSITION.TOP_CENTER,
         },
       );
+      turnOnVisitedNotesPage();
     }
     fetchNotes();
-    return () => {
-      if (getVisitedNotesPage() === "0") turnOnVisitedNotesPage();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchNotes, intl]);
 
   return (
     <>
@@ -71,9 +69,10 @@ export default function Notes() {
         }}
       >
         {allNotes.map((note) => (
-          <NavLink to={`${NotesPath}/${note.id}`}
+          <NavLink
+            to={`${NotesPath}/${note.id}`}
             style={{
-              textDecoration: 'none'
+              textDecoration: "none",
             }}
             key={note.created_at.getTime()}
           >
@@ -84,8 +83,7 @@ export default function Notes() {
           </NavLink>
         ))}
       </Box>
-      <AddNoteButton
-      />
+      <AddNoteButton />
       <ToastContainer theme={themeMode} />
     </>
   );

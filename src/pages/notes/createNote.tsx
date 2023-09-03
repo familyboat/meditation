@@ -36,14 +36,13 @@ export default function CreateNote() {
       }
       back();
     }
-    if (title === null) setTitle('');
-    if (content === null) setContent('');
+    if (title === null) setTitle("");
+    if (content === null) setContent("");
   };
 
   const back = useCallback(() => {
     navigate(NotesPath);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
 
   const fetchNote = useCallback(async () => {
     const note = await getNoteInDb(noteId);
@@ -51,89 +50,93 @@ export default function CreateNote() {
     const { title, content } = note;
     setTitle(title);
     setContent(content);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate, noteId]);
 
   useEffect(() => {
     const hasNote = recordId === `${noteId}`;
     if (!hasNote && !isCreating) navigate(ErrorPath);
     if (hasNote) fetchNote();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchNote, isCreating, navigate, noteId, recordId]);
 
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          position: 'sticky',
+          top: 0,
+          zIndex: 2,
+          backgroundColor: '#fff',
+        }}
+      >
+        <Button onClick={back}>
+          <ArrowBackIosIcon />
+        </Button>
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center'
+            flex: "1 1 0",
           }}
         >
-          <Button onClick={back}>
-            <ArrowBackIosIcon />
-          </Button>
-          <Box>
-            {isCreating
-              ? intl.formatMessage({
-                defaultMessage: "Create note",
-                id: "create_note",
-              })
-              : intl.formatMessage({
-                defaultMessage: "Edit note",
-                id: "edit_note",
-              })}
-          </Box>
+          {isCreating
+            ? intl.formatMessage({
+              defaultMessage: "Create note",
+              id: "create_note",
+            })
+            : intl.formatMessage({
+              defaultMessage: "Edit note",
+              id: "edit_note",
+            })}
         </Box>
-        <Box>
-          <TextField
-            autoComplete="off"
-            required
-            margin="dense"
-            id="title"
-            label={intl.formatMessage({
-              defaultMessage: "title",
-              id: "add_note_title",
-            })}
-            error={title === ""}
-            helperText={intl.formatMessage({
-              defaultMessage: "Please enter the title of the note",
-              id: "add_note_title_helper",
-            })}
-            type="text"
-            value={title ?? ""}
-            onChange={(e) => setTitle(e.target.value)}
-            fullWidth
-            variant="standard"
+        <Button onClick={handleSubmit} variant="contained" size="small">
+          <FormattedMessage
+            defaultMessage="Add"
+            id="add"
           />
-          <TextField
-            required
-            autoComplete="off"
-            margin="dense"
-            id="content"
-            label={intl.formatMessage({
-              defaultMessage: "content",
-              id: "add_note_content",
-            })}
-            error={content === ""}
-            helperText={intl.formatMessage({
-              defaultMessage: "Please enter the content of the note",
-              id: "add_note_content_helper",
-            })}
-            type="text"
-            value={content ?? ""}
-            onChange={(e) => setContent(e.target.value)}
-            fullWidth
-            multiline
-            variant="standard"
-          />
-          <Button onClick={handleSubmit} variant="contained" size="small">
-            <FormattedMessage
-              defaultMessage="Add"
-              id="add"
-            />
-          </Button>
-        </Box>
+        </Button>
+      </Box>
+      <Box>
+        <TextField
+          autoComplete="off"
+          required
+          margin="dense"
+          id="title"
+          label={intl.formatMessage({
+            defaultMessage: "title",
+            id: "add_note_title",
+          })}
+          error={title === ""}
+          helperText={intl.formatMessage({
+            defaultMessage: "Please enter the title of the note",
+            id: "add_note_title_helper",
+          })}
+          type="text"
+          value={title ?? ""}
+          onChange={(e) => setTitle(e.target.value)}
+          fullWidth
+          variant="standard"
+        />
+        <TextField
+          required
+          autoComplete="off"
+          margin="dense"
+          id="content"
+          label={intl.formatMessage({
+            defaultMessage: "content",
+            id: "add_note_content",
+          })}
+          error={content === ""}
+          helperText={intl.formatMessage({
+            defaultMessage: "Please enter the content of the note",
+            id: "add_note_content_helper",
+          })}
+          type="text"
+          value={content ?? ""}
+          onChange={(e) => setContent(e.target.value)}
+          fullWidth
+          multiline
+          variant="standard"
+        />
       </Box>
     </>
   );

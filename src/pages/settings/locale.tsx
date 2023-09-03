@@ -8,6 +8,7 @@ import { setLocale } from "../../db";
 export default function Locale() {
   const localeMode = useContext(localeContext);
   const intl = useIntl();
+  
   return (
     <>
       <Base
