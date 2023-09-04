@@ -6,26 +6,32 @@ import { HomePath, NotePath, NotesPath, SettingsPath } from "./constant";
 import Settings from "./pages/settings";
 import ErrorPage from "./layout/error";
 import CreateNote from "./pages/notes/createNote";
+import NavMenu from "./layout/navMenu";
 
 export const router = createBrowserRouter([
   {
     Component: Layout,
     children: [
       {
-        path: HomePath,
-        Component: Home,
-      },
-      {
-        path: NotesPath,
-        Component: Notes
+        Component: NavMenu,
+        children: [
+          {
+            path: HomePath,
+            Component: Home,
+          },
+          {
+            path: NotesPath,
+            Component: Notes
+          },
+          {
+            path: SettingsPath,
+            Component: Settings,
+          },
+        ]
       },
       {
         path: NotePath,
         Component: CreateNote,
-      },
-      {
-        path: SettingsPath,
-        Component: Settings,
       },
       {
         path: '*',

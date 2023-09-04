@@ -1,7 +1,7 @@
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
 import { HomePath, NotesPath, SettingsPath } from "../constant";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
 
 enum Path {
@@ -17,7 +17,22 @@ export default function NavMenu() {
   const intl = useIntl();
 
   return (
-    <>
+    <Box
+      sx={{
+        padding: '1rem 1rem 0',
+        blockSize: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <Box
+        sx={{
+          flex: '1 1 0',
+          overflowY: 'auto'
+        }}
+      >
+        <Outlet />
+      </Box>
       <BottomNavigation
         showLabels
         value={path}
@@ -53,6 +68,6 @@ export default function NavMenu() {
           })}
         />
       </BottomNavigation>
-    </>
+    </Box>
   );
 }

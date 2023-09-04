@@ -59,7 +59,11 @@ export default function CreateNote() {
   }, [fetchNote, isCreating, navigate, noteId, recordId]);
 
   return (
-    <>
+    <Box
+      sx={{
+        padding: '1rem 1rem 0',
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -68,6 +72,7 @@ export default function CreateNote() {
           top: 0,
           zIndex: 2,
           backgroundColor: '#fff',
+
         }}
       >
         <Button onClick={back}>
@@ -138,6 +143,6 @@ export default function CreateNote() {
           variant="standard"
         />
       </Box>
-    </>
+    </Box>
   );
 }
