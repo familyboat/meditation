@@ -1,0 +1,1 @@
+import{l as t,j as r,r as a,af as s}from"./index-8272c96d.js";import{B as n}from"./Button-6fe96076.js";function m(){const e=t(),o=()=>{a.startTransition(()=>{e(s)})};return r.jsxs(r.Fragment,{children:[r.jsx("header",{children:"Sorry, there occured an error."}),r.jsx(n,{onClick:o,children:"Go to home page"})]})}export{m as default};
