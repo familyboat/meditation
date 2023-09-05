@@ -1,12 +1,8 @@
 import { createBrowserRouter } from "react-router-dom"
-import Home from "./pages/home"
-import Notes from "./pages/notes"
 import Layout from "./layout";
 import { HomePath, NotePath, NotesPath, SettingsPath } from "./constant";
-import Settings from "./pages/settings";
-import ErrorPage from "./layout/error";
-import CreateNote from "./pages/notes/createNote";
 import NavMenu from "./layout/navMenu";
+import { lazy } from "react";
 
 export const router = createBrowserRouter([
   {
@@ -17,25 +13,25 @@ export const router = createBrowserRouter([
         children: [
           {
             path: HomePath,
-            Component: Home,
+            Component: lazy(() => import('./pages/home')),
           },
           {
             path: NotesPath,
-            Component: Notes
+            Component: lazy(() => import('./pages/notes'))
           },
           {
             path: SettingsPath,
-            Component: Settings,
+            Component: lazy(() => import('./pages/settings')),
           },
         ]
       },
       {
         path: NotePath,
-        Component: CreateNote,
+        Component: lazy(() => import('./pages/notes/createNote')),
       },
       {
         path: '*',
-        Component: ErrorPage,
+        Component: lazy(() => import('./layout/error')),
       }
     ]
   }

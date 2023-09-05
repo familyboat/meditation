@@ -58,15 +58,16 @@ function App() {
     },
     [],
   );
+  const localeValue = useMemo(() => ({
+    toggleLocale,
+    locale
+  }), [locale, toggleLocale])
 
   const localePrefix = locale.substring(0, 2);
   return (
     <>
       <localeContext.Provider
-        value={{
-          toggleLocale,
-          locale,
-        }}
+        value={localeValue}
       >
         <IntlProvider
           messages={localePrefix === "en" ? en : zh}

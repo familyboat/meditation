@@ -4,12 +4,15 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { NotesPath } from "../../constant";
+import { startTransition } from "react";
 
 export default function AddNoteButton() {
   const navigate = useNavigate();
 
   const handleClickOpen = () => {
-    navigate(`${NotesPath}/create`)
+    startTransition(() => {
+      navigate(`${NotesPath}/create`)
+    })
   };
 
   return (

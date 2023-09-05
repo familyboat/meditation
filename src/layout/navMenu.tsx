@@ -1,6 +1,6 @@
 import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
 import { HomePath, NotesPath, SettingsPath } from "../constant";
-import { useState } from "react";
+import { startTransition, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
 
@@ -37,13 +37,15 @@ export default function NavMenu() {
         showLabels
         value={path}
         onChange={(_, newPath) => {
-          setPath(newPath);
-          navigate(newPath);
-          window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth",
-          });
+          startTransition(() => {
+            setPath(newPath);
+            navigate(newPath);
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: "smooth",
+            });
+          })
         }}
       >
         <BottomNavigationAction

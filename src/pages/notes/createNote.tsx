@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, startTransition } from "react";
 import { getNote as getNoteInDb, NoteProps, putNote, setNote } from "../../db";
 import { FormattedMessage, useIntl } from "react-intl";
 import { ErrorPath, NotesPath } from "../../constant";
@@ -41,7 +41,9 @@ export default function CreateNote() {
   };
 
   const back = useCallback(() => {
-    navigate(NotesPath);
+    startTransition(() => {
+      navigate(NotesPath);
+    })
   }, [navigate]);
 
   const fetchNote = useCallback(async () => {
