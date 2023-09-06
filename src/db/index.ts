@@ -5,10 +5,14 @@ import { incrementByOne } from "../utils";
 const dbName = 'app';
 const tableName = 'notes'
 
+export type RevisionsProps =  Omit<NoteProps, 'id' | 'created_at' | 'revisions'>[]
+
 export type NoteProps = {
   title: string,
   content: string,
   created_at: Date,
+  modified_at: Date,
+  revisions?: RevisionsProps
   id: number,
 }
 

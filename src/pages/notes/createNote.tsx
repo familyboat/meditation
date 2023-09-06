@@ -19,19 +19,29 @@ export default function CreateNote() {
 
   const handleSubmit = async () => {
     if (title && content) {
+      const now = new Date();
       if (isCreating) {
         const newNote: Omit<NoteProps, "id"> = {
           title,
           content,
-          "created_at": new Date(),
+          "created_at": now,
+          "modified_at": now,
         };
         await setNote(newNote);
       } else {
-        const oldNote = await getNoteInDb(noteId);
+        const {title: oldTitle, content: oldContent, revisions = [], ...oldNote} = await getNoteInDb(noteId);
+        revisions.push({
+          title: oldTitle,
+          content: oldContent,
+          "modified_at": now
+        })
+
         await putNote({
           ...oldNote,
           title,
           content,
+          "modified_at": now,
+          revisions
         });
       }
       back();

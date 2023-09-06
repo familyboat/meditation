@@ -7,14 +7,12 @@ import {
   NoteProps,
   turnOnVisitedNotesPage,
 } from "../../db";
-import NoteListItem from "./noteListItem";
+import NoteCard from "./noteCard";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Box } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "@emotion/react";
-import { NavLink } from "react-router-dom";
-import { NotesPath } from "../../constant";
 
 export default function Notes() {
   const [allNotes, setAllNotes] = useState<NoteProps[]>([]);
@@ -69,18 +67,13 @@ export default function Notes() {
         }}
       >
         {allNotes.map((note) => (
-          <NavLink
-            to={`${NotesPath}/${note.id}`}
-            style={{
-              textDecoration: "none",
-            }}
-            key={note.created_at.getTime()}
-          >
-            <NoteListItem
+
+            <NoteCard
               onDeleteNote={onDeleteNote}
               note={note}
+              key={note.created_at.getTime()}
             />
-          </NavLink>
+          
         ))}
       </Box>
       <AddNoteButton />
