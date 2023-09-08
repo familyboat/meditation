@@ -3,12 +3,12 @@ import { localeContext, localeMap } from "../../provider";
 import { Autocomplete, TextField } from "@mui/material";
 import { useIntl } from "react-intl";
 import Base from "./base";
-import { setLocale } from "../../db";
+import { SupportedLocales, setLocaleInLocal } from "../../db";
 
 export default function Locale() {
   const localeMode = useContext(localeContext);
   const intl = useIntl();
-  
+
   return (
     <>
       <Base
@@ -16,15 +16,17 @@ export default function Locale() {
           defaultMessage: "locale",
           id: "locale",
         })}
-        subHeading={localeMode.locale === "enUS"
-          ? intl.formatMessage({
-            defaultMessage: "English",
-            id: "locale_en",
-          })
-          : intl.formatMessage({
-            defaultMessage: "简体中文",
-            id: "locale_zh",
-          })}
+        subHeading={
+          localeMode.locale === "enUS"
+            ? intl.formatMessage({
+                defaultMessage: "English",
+                id: "locale_en",
+              })
+            : intl.formatMessage({
+                defaultMessage: "简体中文",
+                id: "locale_zh",
+              })
+        }
       >
         <Autocomplete
           options={Object.keys(localeMap)}
@@ -33,7 +35,7 @@ export default function Locale() {
           disableClearable
           onChange={(_, newLocale) => {
             localeMode.toggleLocale();
-            setLocale(newLocale);
+            setLocaleInLocal(newLocale as SupportedLocales);
           }}
           renderInput={(params) => (
             <TextField

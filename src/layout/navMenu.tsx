@@ -1,8 +1,9 @@
 import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
 import { HomePath, NotesPath, SettingsPath } from "../constant";
-import { startTransition, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { useIntl } from "react-intl";
+import { useNavigate } from "../hook";
 
 enum Path {
   home = HomePath,
@@ -17,18 +18,12 @@ export default function NavMenu() {
   const intl = useIntl();
 
   return (
-    <Box
-      sx={{
-        padding: '1rem 1rem 0',
-        blockSize: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <>
       <Box
         sx={{
-          flex: '1 1 0',
-          overflowY: 'auto'
+          flex: "1 1 0",
+          overflow: "hidden auto",
+          height: "100%",
         }}
       >
         <Outlet />
@@ -37,15 +32,8 @@ export default function NavMenu() {
         showLabels
         value={path}
         onChange={(_, newPath) => {
-          startTransition(() => {
-            setPath(newPath);
-            navigate(newPath);
-            window.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: "smooth",
-            });
-          })
+          setPath(newPath);
+          navigate(newPath);
         }}
       >
         <BottomNavigationAction
@@ -70,6 +58,6 @@ export default function NavMenu() {
           })}
         />
       </BottomNavigation>
-    </Box>
+    </>
   );
 }

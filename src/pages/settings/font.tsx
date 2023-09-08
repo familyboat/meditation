@@ -1,13 +1,13 @@
 import { useIntl } from "react-intl";
 import Base from "./base";
 import { useState } from "react";
-import { getFontsize, setFontsize as setFontsizeInDb } from "../../db";
+import { getFontsizeInLocal, setFontsizeInLocal } from "../../db";
 import { getRem, modifyRem } from "../../utils";
 import { Slider } from "@mui/material";
 
 export default function Font() {
   const intl = useIntl();
-  const [fontsize, setFontsize] = useState(getFontsize() || getRem());
+  const [fontsize, setFontsize] = useState(getFontsizeInLocal() || getRem());
   return (
     <>
       <Base
@@ -19,7 +19,7 @@ export default function Font() {
       >
         <Slider
           sx={{
-            flex: '1 1 0'
+            flex: "1 1 0",
           }}
           aria-label="fontsize"
           value={parseInt(fontsize.substring(0, 2))}
@@ -32,7 +32,7 @@ export default function Font() {
             const newFontsize = `${newValue}px`;
             modifyRem(newFontsize);
             setFontsize(newFontsize);
-            setFontsizeInDb(newFontsize);
+            setFontsizeInLocal(newFontsize);
           }}
         />
       </Base>

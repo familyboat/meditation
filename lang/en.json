@@ -68,6 +68,9 @@
   "locale_zh": {
     "defaultMessage": "简体中文"
   },
+  "note_history": {
+    "defaultMessage": "history versions"
+  },
   "notes": {
     "defaultMessage": "notes"
   },
@@ -85,5 +88,23 @@
   },
   "source_code": {
     "defaultMessage": "Repository of the source code"
+  },
+  "speak_four_part": {
+    "defaultMessage": "; The last modified time is"
+  },
+  "speak_one_part": {
+    "defaultMessage": "The title is"
+  },
+  "speak_three_part": {
+    "defaultMessage": "; This note created at"
+  },
+  "speak_two_part": {
+    "defaultMessage": "; The content is"
+  },
+  "speaking_tip_part_one": {
+    "defaultMessage": "Add to playlist"
+  },
+  "speaking_tip_part_two": {
+    "defaultMessage": "Speaking immediately"
   }
 }

@@ -1,34 +1,38 @@
 import { useCallback, useEffect, useState } from "react";
 import AddNoteButton from "./addNoteButton";
 import {
-  deleteNote,
-  getAllNotes,
+  NoteResourceProps,
+  deleteNoteInDb,
+  getNotesInDb,
   getVisitedNotesPage,
-  NoteProps,
   turnOnVisitedNotesPage,
 } from "../../db";
-import NoteCard from "./noteCard";
+import NoteCard from "./card";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Box } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "@emotion/react";
+import Actions from "./actions";
 
 export default function Notes() {
-  const [allNotes, setAllNotes] = useState<NoteProps[]>([]);
+  const [allNotes, setAllNotes] = useState<NoteResourceProps[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const theme: any = useTheme();
   const themeMode = theme.palette.mode;
   const intl = useIntl();
 
   const fetchNotes = useCallback(async () => {
-    const notes = (await getAllNotes()).reverse();
+    const notes = (await getNotesInDb()).reverse();
     setAllNotes(notes);
   }, []);
-  const onDeleteNote = useCallback(async (note: NoteProps) => {
-    await deleteNote(note);
-    await fetchNotes();
-  }, [fetchNotes]);
+  const onDeleteNote = useCallback(
+    async (note: NoteResourceProps) => {
+      await deleteNoteInDb(note.id);
+      await fetchNotes();
+    },
+    [fetchNotes],
+  );
 
   useEffect(() => {
     if (getVisitedNotesPage() === "0") {
@@ -54,10 +58,7 @@ export default function Notes() {
           fontSize: "1.5rem",
         }}
       >
-        <FormattedMessage
-          defaultMessage="All notes"
-          id="all_notes"
-        />
+        <FormattedMessage defaultMessage="All notes" id="all_notes" />
       </Box>
       <Box
         sx={{
@@ -67,13 +68,11 @@ export default function Notes() {
         }}
       >
         {allNotes.map((note) => (
-
-            <NoteCard
-              onDeleteNote={onDeleteNote}
-              note={note}
-              key={note.created_at.getTime()}
-            />
-          
+          <NoteCard
+            actions={<Actions note={note} onDeleteNote={onDeleteNote} />}
+            note={note}
+            key={note.created_at.getTime()}
+          />
         ))}
       </Box>
       <AddNoteButton />

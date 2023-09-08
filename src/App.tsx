@@ -4,32 +4,33 @@ import { router } from "./route";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { useCallback, useMemo, useState } from "react";
 import { ColorModeContext, localeContext } from "./provider";
-import * as locales from "@mui/material/locale";
 import { IntlProvider } from "react-intl";
 import * as zh from "../compiled-lang/zh.json";
 import * as en from "../compiled-lang/en.json";
-import {
-  clearStaleKeys,
-  getFontsize,
-  getLocale,
-  getTheme,
-  ThemeProps,
-} from "./db";
 import { getLocaleByTimezone, modifyRem } from "./utils";
-
-export type SupportedLocales = keyof typeof locales;
+import {
+  clearStaleKeysInLocal,
+  getFontsizeInLocal,
+  getLocaleInLocal,
+  getThemeInLocal,
+  locales,
+  SupportedLocales,
+  ThemeResourceProps,
+} from "./db";
 
 // clear stale keys
-clearStaleKeys();
+clearStaleKeysInLocal();
 // read preference from localstorage
-const preferedRem = getFontsize();
-const preferedTheme = getTheme();
-const preferedLocale = getLocale();
+const preferedRem = getFontsizeInLocal();
+const preferedTheme = getThemeInLocal();
+const preferedLocale = getLocaleInLocal();
 
 preferedRem && modifyRem(preferedRem);
 
 function App() {
-  const [mode, setMode] = useState<ThemeProps>(preferedTheme || "light");
+  const [mode, setMode] = useState<ThemeResourceProps>(
+    preferedTheme || "light",
+  );
   const [locale, setLocale] = useState<SupportedLocales>(
     preferedLocale || getLocaleByTimezone(),
   );
@@ -44,31 +45,32 @@ function App() {
 
   const theme = useMemo(
     () =>
-      createTheme({
-        palette: {
-          mode,
+      createTheme(
+        {
+          palette: {
+            mode,
+          },
         },
-      }, locales[locale]),
+        locales[locale],
+      ),
     [mode, locale],
   );
 
-  const toggleLocale = useCallback(
-    () => {
-      setLocale((prevMode) => (prevMode === "enUS" ? "zhCN" : "enUS"));
-    },
-    [],
+  const toggleLocale = useCallback(() => {
+    setLocale((prevMode) => (prevMode === "enUS" ? "zhCN" : "enUS"));
+  }, []);
+  const localeValue = useMemo(
+    () => ({
+      toggleLocale,
+      locale,
+    }),
+    [locale, toggleLocale],
   );
-  const localeValue = useMemo(() => ({
-    toggleLocale,
-    locale
-  }), [locale, toggleLocale])
 
   const localePrefix = locale.substring(0, 2);
   return (
     <>
-      <localeContext.Provider
-        value={localeValue}
-      >
+      <localeContext.Provider value={localeValue}>
         <IntlProvider
           messages={localePrefix === "en" ? en : zh}
           locale={localePrefix}

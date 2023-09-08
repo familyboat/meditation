@@ -1,6 +1,6 @@
-export const HomePath = '/notes';
-export const NotesPath = '/notes/record';
-export const NotePath = '/notes/record/:recordId';
-export const NoteHistoryPath = '/notes/record/:recordId/history'
-export const SettingsPath = '/notes/settings';
-export const ErrorPath = '/notes/404'
+export const HomePath = "/meditation";
+export const NotesPath = "/meditation/notes";
+export const NotePath = "/meditation/notes/:recordId";
+export const NoteHistoryPath = "/meditation/notes/:recordId/history";
+export const SettingsPath = "/meditation/settings";
+export const ErrorPath = "/meditation/404";

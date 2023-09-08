@@ -1,10 +1,8 @@
 import { Box } from "@mui/material";
 import { purple } from "@mui/material/colors";
-import { NoteProps } from "../../db";
+import { NoteResourceProps } from "../../db";
 
-export default function Note(
-  {note}: {note: NoteProps}
-) {
+export default function Note({ note }: { note: NoteResourceProps }) {
   const { title, content, created_at, modified_at } = note;
 
   return (

@@ -155,6 +155,12 @@
       "value": "简体中文"
     }
   ],
+  "note_history": [
+    {
+      "type": 0,
+      "value": "历史版本"
+    }
+  ],
   "notes": [
     {
       "type": 0,
@@ -189,6 +195,42 @@
     {
       "type": 0,
       "value": "源码仓库"
+    }
+  ],
+  "speak_four_part": [
+    {
+      "type": 0,
+      "value": "；最后修改时间是"
+    }
+  ],
+  "speak_one_part": [
+    {
+      "type": 0,
+      "value": "标题是"
+    }
+  ],
+  "speak_three_part": [
+    {
+      "type": 0,
+      "value": "；记事本创建于"
+    }
+  ],
+  "speak_two_part": [
+    {
+      "type": 0,
+      "value": "；内容是"
+    }
+  ],
+  "speaking_tip_part_one": [
+    {
+      "type": 0,
+      "value": "添加到播放列表"
+    }
+  ],
+  "speaking_tip_part_two": [
+    {
+      "type": 0,
+      "value": "即将朗读"
     }
   ]
 }

@@ -94,5 +94,26 @@
     },
     "edit_note": {
         "defaultMessage": "编辑笔记"
+    },
+    "note_history": {
+        "defaultMessage": "历史版本"
+    },
+    "speak_four_part": {
+        "defaultMessage": "；最后修改时间是"
+    },
+    "speak_one_part": {
+        "defaultMessage": "标题是"
+    },
+    "speak_three_part": {
+        "defaultMessage": "；记事本创建于"
+    },
+    "speak_two_part": {
+        "defaultMessage": "；内容是"
+    },
+    "speaking_tip_part_one": {
+        "defaultMessage": "添加到播放列表"
+    },
+    "speaking_tip_part_two": {
+        "defaultMessage": "即将朗读"
     }
 }

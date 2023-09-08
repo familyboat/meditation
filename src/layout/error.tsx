@@ -1,20 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import {Button} from '@mui/material';
+import { Button } from "@mui/material";
 import { HomePath } from "../constant";
-import { startTransition } from "react";
+import { useNavigate } from "../hook";
 
-export default function ErrorPage () {
-  const navigate = useNavigate();
-  const goHome = () => {
-    startTransition(() => {
-      navigate(HomePath);
-    })
-  }
+export default function ErrorPage() {
+  const goHome = useNavigate();
 
   return (
     <>
       <header>Sorry, there occured an error.</header>
-      <Button onClick={goHome}>Go to home page</Button>
+      <Button onClick={() => goHome(HomePath)}>Go to home page</Button>
     </>
-  )
+  );
 }

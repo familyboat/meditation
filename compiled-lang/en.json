@@ -137,6 +137,12 @@
       "value": "简体中文"
     }
   ],
+  "note_history": [
+    {
+      "type": 0,
+      "value": "history versions"
+    }
+  ],
   "notes": [
     {
       "type": 0,
@@ -171,6 +177,42 @@
     {
       "type": 0,
       "value": "Repository of the source code"
+    }
+  ],
+  "speak_four_part": [
+    {
+      "type": 0,
+      "value": "; The last modified time is"
+    }
+  ],
+  "speak_one_part": [
+    {
+      "type": 0,
+      "value": "The title is"
+    }
+  ],
+  "speak_three_part": [
+    {
+      "type": 0,
+      "value": "; This note created at"
+    }
+  ],
+  "speak_two_part": [
+    {
+      "type": 0,
+      "value": "; The content is"
+    }
+  ],
+  "speaking_tip_part_one": [
+    {
+      "type": 0,
+      "value": "Add to playlist"
+    }
+  ],
+  "speaking_tip_part_two": [
+    {
+      "type": 0,
+      "value": "Speaking immediately"
     }
   ]
 }

@@ -1,6 +1,12 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom";
 import Layout from "./layout";
-import { HomePath, NoteHistoryPath, NotePath, NotesPath, SettingsPath } from "./constant";
+import {
+  HomePath,
+  NoteHistoryPath,
+  NotePath,
+  NotesPath,
+  SettingsPath,
+} from "./constant";
 import NavMenu from "./layout/navMenu";
 import { lazy } from "react";
 
@@ -13,30 +19,30 @@ export const router = createBrowserRouter([
         children: [
           {
             path: HomePath,
-            Component: lazy(() => import('./pages/home')),
+            Component: lazy(() => import("./pages/home")),
           },
           {
             path: NotesPath,
-            Component: lazy(() => import('./pages/notes'))
+            Component: lazy(() => import("./pages/notes")),
           },
           {
             path: SettingsPath,
-            Component: lazy(() => import('./pages/settings')),
+            Component: lazy(() => import("./pages/settings")),
           },
-        ]
+        ],
       },
       {
         path: NotePath,
-        Component: lazy(() => import('./pages/notes/createNote')),
+        Component: lazy(() => import("./pages/notes/createNote")),
       },
       {
         path: NoteHistoryPath,
-        Component: lazy(() => import('./pages/notes/historyNotes'))
+        Component: lazy(() => import("./pages/notes/history")),
       },
       {
-        path: '*',
-        Component: lazy(() => import('./layout/error')),
-      }
-    ]
-  }
-])
+        path: "*",
+        Component: lazy(() => import("./layout/error")),
+      },
+    ],
+  },
+]);

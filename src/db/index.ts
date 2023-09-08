@@ -1,120 +1,27 @@
-import { openDB } from "idb";
-import { SupportedLocales } from "../App";
-import { incrementByOne } from "../utils";
+import { keyOfFontsize } from "./fontsize";
+import { keyOfLocale } from "./locale";
+import { keyOfTheme } from "./theme";
+import { countOfVisitApp, visitedHomePage, visitedNotesPage } from "./visit";
 
-const dbName = 'app';
-const tableName = 'notes'
+export * from "./fontsize";
+export * from "./locale";
+export * from "./note";
+export * from "./theme";
+export * from "./visit";
 
-export type RevisionsProps =  Omit<NoteProps, 'id' | 'created_at' | 'revisions'>[]
-
-export type NoteProps = {
-  title: string,
-  content: string,
-  created_at: Date,
-  modified_at: Date,
-  revisions?: RevisionsProps
-  id: number,
-}
-
-const notesDb = openDB(dbName, 1, {
-  upgrade(db) {
-    db.createObjectStore(tableName, {
-      keyPath: 'id',
-      autoIncrement: true,
-    });
-  }
-});
-
-export async function getAllNotes(): Promise<NoteProps[]> {
-  return (await notesDb).getAll(tableName);
-}
-
-export async function getNote(noteId: number): Promise<NoteProps> {
-  return (await notesDb).get(tableName, noteId)
-}
-
-export async function setNote(val: Omit<NoteProps, 'id'>) {
-  return (await notesDb).add(tableName, val)
-}
-
-export async function putNote(note: NoteProps) {
-  return (await notesDb).put(tableName, note);
-}
-
-export async function deleteNote(val: NoteProps) {
-  await (await notesDb).delete(tableName, val.id);
-}
-
-// localstorage
-// locale
-const localeKey = 'locale'
-export function setLocale(newLocale: string) {
-  localStorage.setItem(localeKey, newLocale)
-}
-
-export function getLocale(): SupportedLocales {
-  return localStorage.getItem(localeKey) as SupportedLocales;
-}
-
-// theme
-export type ThemeProps = 'dark' | 'light'
-const themeKey = 'theme'
-export function setTheme(newTheme: ThemeProps) {
-  localStorage.setItem(themeKey, newTheme);
-}
-export function getTheme(): ThemeProps {
-  return localStorage.getItem(themeKey) as ThemeProps;
-}
-
-// font size
-const fontsizeKey = 'fontsize';
-export function setFontsize(newFontsize: string) {
-  localStorage.setItem(fontsizeKey, newFontsize);
-}
-export function getFontsize() {
-  return localStorage.getItem(fontsizeKey);
-}
-
-// determine whether the visitor views the app for the first time
-const countOfVisitApp = 'countOfVisitApp';
-export function updateCountOfVisitApp() {
-  const oldCount = getCountOfVisitApp();
-  const newCount = incrementByOne(oldCount);
-  localStorage.setItem(countOfVisitApp, newCount.toString());
-}
-export function getCountOfVisitApp() {
-  return localStorage.getItem(countOfVisitApp) || 0;
-}
-
-// determine whether the visitor has viewd the Notes page or Home page
-
-const visitedHomePage = 'visitedHomePage';
-const visitedNotesPage = 'visitedNotesPage';
-function getVisited(page: string) {
-  return localStorage.getItem(page) || '0'
-}
-export function getVisitedHomePage() {
-  return getVisited(visitedHomePage);
-}
-export function getVisitedNotesPage() {
-  return getVisited(visitedNotesPage);
-}
-function turnOnVisited(page: string) {
-  localStorage.setItem(page, '1');
-}
-export function turnOnVisitedHomePage() {
-  turnOnVisited(visitedHomePage)
-}
-export function turnOnVisitedNotesPage() {
-  turnOnVisited(visitedNotesPage)
-}
-
-const allKey = [localeKey, themeKey, fontsizeKey, countOfVisitApp, visitedHomePage, visitedNotesPage];
-export function clearStaleKeys() {
+const allKey = [
+  keyOfLocale,
+  keyOfTheme,
+  keyOfFontsize,
+  countOfVisitApp,
+  visitedHomePage,
+  visitedNotesPage,
+];
+export function clearStaleKeysInLocal() {
   for (let i = 0, len = localStorage.length; i < len; i++) {
     const key = localStorage.key(i);
     if (key && !allKey.includes(key)) {
-      localStorage.removeItem(key)
+      localStorage.removeItem(key);
     }
   }
 }

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ColorModeContext } from "../../provider";
 import { useIntl } from "react-intl";
 import Base from "./base";
-import { setTheme } from "../../db";
+import { setThemeInLocal } from "../../db";
 
 export default function Theme() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,21 +18,23 @@ export default function Theme() {
         defaultMessage: "dark mode",
         id: "dark_mode",
       })}
-      subHeading={themeMode === "dark"
-        ? intl.formatMessage({
-          defaultMessage: "on",
-          id: "dark_mode_on",
-        })
-        : intl.formatMessage({
-          defaultMessage: "off",
-          id: "dark_mode_off",
-        })}
+      subHeading={
+        themeMode === "dark"
+          ? intl.formatMessage({
+              defaultMessage: "on",
+              id: "dark_mode_on",
+            })
+          : intl.formatMessage({
+              defaultMessage: "off",
+              id: "dark_mode_off",
+            })
+      }
     >
       <Switch
-        defaultChecked={themeMode === 'dark' ? true : false}
+        defaultChecked={themeMode === "dark" ? true : false}
         onChange={(_, isDark) => {
           colorMode.toggleColorMode();
-          setTheme(isDark ? 'dark' : 'light');
+          setThemeInLocal(isDark ? "dark" : "light");
         }}
       />
     </Base>

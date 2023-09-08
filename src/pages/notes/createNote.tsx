@@ -1,10 +1,16 @@
 import { Box, Button, TextField } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { useNavigate, useParams } from "react-router-dom";
-import { useCallback, useEffect, useState, startTransition } from "react";
-import { getNote as getNoteInDb, NoteProps, putNote, setNote } from "../../db";
+import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import {
+  NoteResourceProps,
+  createNoteInDb,
+  getNoteInDb,
+  modifyNoteInDb,
+} from "../../db";
 import { FormattedMessage, useIntl } from "react-intl";
 import { ErrorPath, NotesPath } from "../../constant";
+import { useNavigate } from "../../hook";
 
 export default function CreateNote() {
   const { recordId } = useParams();
@@ -21,27 +27,33 @@ export default function CreateNote() {
     if (title && content) {
       const now = new Date();
       if (isCreating) {
-        const newNote: Omit<NoteProps, "id"> = {
+        const newNote: Omit<NoteResourceProps, "id"> = {
           title,
           content,
-          "created_at": now,
-          "modified_at": now,
+          created_at: now,
+          modified_at: now,
+          versions: [],
         };
-        await setNote(newNote);
+        await createNoteInDb(newNote);
       } else {
-        const {title: oldTitle, content: oldContent, revisions = [], ...oldNote} = await getNoteInDb(noteId);
-        revisions.push({
+        const {
           title: oldTitle,
           content: oldContent,
-          "modified_at": now
-        })
+          versions = [],
+          ...oldNote
+        } = await getNoteInDb(noteId);
+        versions.push({
+          title: oldTitle,
+          content: oldContent,
+          modified_at: now,
+        });
 
-        await putNote({
+        await modifyNoteInDb({
           ...oldNote,
           title,
           content,
-          "modified_at": now,
-          revisions
+          modified_at: now,
+          versions,
         });
       }
       back();
@@ -51,9 +63,7 @@ export default function CreateNote() {
   };
 
   const back = useCallback(() => {
-    startTransition(() => {
-      navigate(NotesPath);
-    })
+    navigate(NotesPath);
   }, [navigate]);
 
   const fetchNote = useCallback(async () => {
@@ -71,20 +81,11 @@ export default function CreateNote() {
   }, [fetchNote, isCreating, navigate, noteId, recordId]);
 
   return (
-    <Box
-      sx={{
-        padding: '1rem 1rem 0',
-      }}
-    >
+    <>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          position: 'sticky',
-          top: 0,
-          zIndex: 2,
-          backgroundColor: '#fff',
-
         }}
       >
         <Button onClick={back}>
@@ -97,22 +98,24 @@ export default function CreateNote() {
         >
           {isCreating
             ? intl.formatMessage({
-              defaultMessage: "Create note",
-              id: "create_note",
-            })
+                defaultMessage: "Create note",
+                id: "create_note",
+              })
             : intl.formatMessage({
-              defaultMessage: "Edit note",
-              id: "edit_note",
-            })}
+                defaultMessage: "Edit note",
+                id: "edit_note",
+              })}
         </Box>
         <Button onClick={handleSubmit} variant="contained" size="small">
-          <FormattedMessage
-            defaultMessage="Add"
-            id="add"
-          />
+          <FormattedMessage defaultMessage="Add" id="add" />
         </Button>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          flex: "1 1 0",
+          overflow: "hidden auto",
+        }}
+      >
         <TextField
           autoComplete="off"
           required
@@ -155,6 +158,6 @@ export default function CreateNote() {
           variant="standard"
         />
       </Box>
-    </Box>
+    </>
   );
 }

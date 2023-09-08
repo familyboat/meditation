@@ -1,18 +1,13 @@
-import {
-  Fab,
-} from "@mui/material";
+import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
 import { NotesPath } from "../../constant";
-import { startTransition } from "react";
+import { useNavigate } from "../../hook";
 
 export default function AddNoteButton() {
   const navigate = useNavigate();
 
   const handleClickOpen = () => {
-    startTransition(() => {
-      navigate(`${NotesPath}/create`)
-    })
+    navigate(`${NotesPath}/create`);
   };
 
   return (
