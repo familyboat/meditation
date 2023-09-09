@@ -37,18 +37,21 @@ function nextNoteIndex(direction: DirectionProps) {
   if (playlistLength === 0) throw Error("No notes to speak!");
 
   const speakingMode = speakingModeSignal.value;
-  const currentSpeakingNoteIndex = currentSpeakingNoteIndexSignal.value || 0;
+  const currentSpeakingNoteIndex = currentSpeakingNoteIndexSignal.value;
   const ratio = direction === "next" ? 1 : -1;
   let maybeNextIndex;
   switch (speakingMode) {
     case "loop": {
-      maybeNextIndex = currentSpeakingNoteIndex + 1 * ratio;
+      maybeNextIndex =
+        currentSpeakingNoteIndex === null
+          ? 0
+          : currentSpeakingNoteIndex + 1 * ratio;
       if (maybeNextIndex >= playlistLength) maybeNextIndex = 0;
       if (maybeNextIndex < 0) maybeNextIndex = playlistLength - 1;
       break;
     }
     case "single":
-      maybeNextIndex = currentSpeakingNoteIndex;
+      maybeNextIndex = currentSpeakingNoteIndex || 0;
       break;
     case "random":
       maybeNextIndex = Math.floor(Math.random() * playlistLength);
