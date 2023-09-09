@@ -65,11 +65,9 @@ export default function HistoryNotes() {
             sx={{
               padding: "0.5rem",
             }}
+            key={version.modified_at.getTime()}
           >
-            <Note
-              key={version.modified_at.getTime()}
-              note={version as NoteResourceProps}
-            />
+            <Note note={version as NoteResourceProps} />
           </Paper>
         ))}
       </Box>

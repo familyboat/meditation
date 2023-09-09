@@ -1,22 +1,17 @@
-import { ButtonGroup, ButtonBase, styled } from "@mui/material";
+import { ButtonGroup } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import HistoryIcon from "@mui/icons-material/History";
 import ShareIcon from "@mui/icons-material/Share";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { useNavigate } from "../../hook";
 import { NotesPath } from "../../constant";
 import { NoteResourceProps } from "../../db";
 import { useIntl } from "react-intl";
 import { useState } from "react";
 import { toast } from "react-toastify";
-
-const MyButton = styled(ButtonBase)(({ theme }) => ({
-  "@media (hover: hover)": {
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
-  },
-}));
+import { addToPlaylist, formatNote, stop } from "../../store";
+import { ButtonBaseWithHover } from "../../components";
 
 export default function Actions({
   note,
@@ -26,7 +21,7 @@ export default function Actions({
   onDeleteNote?: (note: NoteResourceProps) => void;
 }) {
   const navigate = useNavigate();
-  const { title, content, created_at, modified_at, id } = note;
+  const { title, content, id } = note;
   const intl = useIntl();
   const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -48,44 +43,23 @@ export default function Actions({
   }
 
   function speak() {
-    const word = `${intl.formatMessage({
-      defaultMessage: "The title is",
-      id: "speak_one_part",
-    })} ${title} ${intl.formatMessage({
-      defaultMessage: "; The content is",
-      id: "speak_two_part",
-    })} ${content} ${intl.formatMessage({
-      defaultMessage: "; This note created at",
-      id: "speak_three_part",
-    })} ${created_at.toLocaleString()} ${intl.formatMessage({
-      defaultMessage: "; The last modified time is",
-      id: "speak_four_part",
-    })} ${modified_at.toLocaleString()}`;
+    const word = formatNote(note);
     const utterance = new SpeechSynthesisUtterance(word);
 
     if (speechSynthesis.speaking) {
-      toast.info(
-        intl.formatMessage({
-          defaultMessage: "Add to playlist",
-          id: "speaking_tip_part_one",
-        }),
-        {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 500,
-        },
-      );
-    } else {
-      toast.success(
-        intl.formatMessage({
-          defaultMessage: "Speaking immediately",
-          id: "speaking_tip_part_two",
-        }),
-        {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 500
-        },
-      );
+      speechSynthesis.cancel();
+      stop();
     }
+    toast.success(
+      intl.formatMessage({
+        defaultMessage: "Speaking immediately",
+        id: "speaking_tip_part_two",
+      }),
+      {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500,
+      },
+    );
 
     speechSynthesis.speak(utterance);
 
@@ -95,6 +69,23 @@ export default function Actions({
     utterance.onend = () => {
       setIsSpeaking(false);
     };
+    utterance.onerror = () => {
+      setIsSpeaking(false);
+    };
+  }
+
+  function add() {
+    addToPlaylist(note);
+    toast.info(
+      intl.formatMessage({
+        defaultMessage: "Add to playlist",
+        id: "speaking_tip_part_one",
+      }),
+      {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500,
+      },
+    );
   }
 
   return (
@@ -103,18 +94,19 @@ export default function Actions({
         sx={{
           display: "flex",
           gap: "0.5rem",
+          flexWrap: "wrap",
         }}
       >
-        <MyButton onClick={goHistory}>
+        <ButtonBaseWithHover onClick={goHistory}>
           <HistoryIcon fontSize="small" />
-        </MyButton>
-        <MyButton onClick={() => onDeleteNote!(note)}>
+        </ButtonBaseWithHover>
+        <ButtonBaseWithHover onClick={() => onDeleteNote!(note)}>
           <DeleteForeverIcon fontSize="small" />
-        </MyButton>
-        <MyButton onClick={share}>
+        </ButtonBaseWithHover>
+        <ButtonBaseWithHover onClick={share}>
           <ShareIcon fontSize="small" />
-        </MyButton>
-        <MyButton
+        </ButtonBaseWithHover>
+        <ButtonBaseWithHover
           onClick={speak}
           disabled={isSpeaking}
           sx={
@@ -136,7 +128,10 @@ export default function Actions({
           }
         >
           <KeyboardVoiceIcon fontSize="small" />
-        </MyButton>
+        </ButtonBaseWithHover>
+        <ButtonBaseWithHover onClick={add}>
+          <PlaylistAddIcon fontSize="small" />
+        </ButtonBaseWithHover>
       </ButtonGroup>
     </>
   );

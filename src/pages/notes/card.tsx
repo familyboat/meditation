@@ -1,4 +1,4 @@
-import { Box, Divider, Paper, styled } from "@mui/material";
+import { Divider, Paper, styled } from "@mui/material";
 import React from "react";
 import { NoteResourceProps } from "../../db";
 import { memo } from "react";
@@ -26,11 +26,7 @@ const NoteCard = memo(function NoteCard({
   }
 
   return (
-    <Box
-      sx={{
-        padding: "0.5rem",
-      }}
-    >
+    <>
       <Paper
         sx={{
           padding: "0.5rem",
@@ -52,7 +48,7 @@ const NoteCard = memo(function NoteCard({
         <Divider />
         {actions}
       </Paper>
-    </Box>
+    </>
   );
 });
 

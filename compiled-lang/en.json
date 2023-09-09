@@ -149,6 +149,18 @@
       "value": "notes"
     }
   ],
+  "playlist_no_notes": [
+    {
+      "type": 0,
+      "value": "No notes!"
+    }
+  ],
+  "playlists": [
+    {
+      "type": 0,
+      "value": "Playlists"
+    }
+  ],
   "settings": [
     {
       "type": 0,
@@ -179,28 +191,10 @@
       "value": "Repository of the source code"
     }
   ],
-  "speak_four_part": [
+  "speaking_mode": [
     {
       "type": 0,
-      "value": "; The last modified time is"
-    }
-  ],
-  "speak_one_part": [
-    {
-      "type": 0,
-      "value": "The title is"
-    }
-  ],
-  "speak_three_part": [
-    {
-      "type": 0,
-      "value": "; This note created at"
-    }
-  ],
-  "speak_two_part": [
-    {
-      "type": 0,
-      "value": "; The content is"
+      "value": "mode"
     }
   ],
   "speaking_tip_part_one": [

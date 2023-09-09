@@ -1,5 +1,5 @@
 import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
-import { HomePath, NotesPath, SettingsPath } from "../constant";
+import { HomePath, NotesPath, SettingsPath, playlistsPath } from "../constant";
 import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useIntl } from "react-intl";
@@ -8,6 +8,7 @@ import { useNavigate } from "../hook";
 enum Path {
   home = HomePath,
   notes = NotesPath,
+  playlists = playlistsPath,
   settings = SettingsPath,
 }
 
@@ -24,6 +25,7 @@ export default function NavMenu() {
           flex: "1 1 0",
           overflow: "hidden auto",
           height: "100%",
+          padding: "0 0.5rem",
         }}
       >
         <Outlet />
@@ -48,6 +50,13 @@ export default function NavMenu() {
           label={intl.formatMessage({
             id: "notes",
             defaultMessage: "notes",
+          })}
+        />
+        <BottomNavigationAction
+          value={Path.playlists}
+          label={intl.formatMessage({
+            id: "playlists",
+            defaultMessage: "playlists",
           })}
         />
         <BottomNavigationAction

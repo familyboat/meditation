@@ -17,6 +17,7 @@ import {
   SupportedLocales,
   ThemeResourceProps,
 } from "./db";
+import { localeSignal } from "./store";
 
 // clear stale keys
 clearStaleKeysInLocal();
@@ -58,6 +59,7 @@ function App() {
 
   const toggleLocale = useCallback(() => {
     setLocale((prevMode) => (prevMode === "enUS" ? "zhCN" : "enUS"));
+    localeSignal.value = localeSignal.value === "enUS" ? "zhCN" : "enUS";
   }, []);
   const localeValue = useMemo(
     () => ({

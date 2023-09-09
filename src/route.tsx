@@ -6,6 +6,7 @@ import {
   NotePath,
   NotesPath,
   SettingsPath,
+  playlistsPath,
 } from "./constant";
 import NavMenu from "./layout/navMenu";
 import { lazy } from "react";
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
           {
             path: NotesPath,
             Component: lazy(() => import("./pages/notes")),
+          },
+          {
+            path: playlistsPath,
+            Component: lazy(() => import("./pages/playlists")),
           },
           {
             path: SettingsPath,
