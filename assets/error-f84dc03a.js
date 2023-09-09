@@ -1,1 +1,0 @@
-import{m as o,j as r,aj as t}from"./index-3a5043ab.js";import{B as a}from"./Button-ef8dd8f8.js";import"./ButtonGroupContext-2b9356fc.js";function i(){const e=o();return r.jsxs(r.Fragment,{children:[r.jsx("header",{children:"Sorry, there occured an error."}),r.jsx(a,{onClick:()=>e(t),children:"Go to home page"})]})}export{i as default};
