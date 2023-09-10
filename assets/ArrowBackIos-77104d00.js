@@ -1,0 +1,1 @@
+import{r,i as a}from"./createSvgIcon-4ab98ae6.js";import{j as t}from"./index-4b102172.js";var e={},o=a;Object.defineProperty(e,"__esModule",{value:!0});var u=e.default=void 0,i=o(r()),s=t,d=(0,i.default)((0,s.jsx)("path",{d:"M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"}),"ArrowBackIos");u=e.default=d;export{u as d};
