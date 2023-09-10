@@ -1,5 +1,6 @@
 import {
   Box,
+  IconButton,
   Button,
   Dialog,
   DialogActions,
@@ -7,15 +8,16 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
-import { ButtonBaseWithHover } from "../../components";
+import CloseIcon from "@mui/icons-material/Close";
+import { useEffect, useState } from "react";
 import TimerIcon from "@mui/icons-material/Timer";
 import { FormattedMessage, useIntl } from "react-intl";
 import { formatTimestamp } from "../../utils";
 import {
-  isTaskOverSignal,
   startTask as startTimerTask,
   stopTask as stopTimerTask,
+  timerStartAtSignal,
+  totalTimeSignal,
 } from "../../store/timer";
 
 export default function Timer() {
@@ -24,14 +26,8 @@ export default function Timer() {
   const [open, setOpen] = useState(false);
   const [timer, setTimer] = useState<string | null>(null);
   const [now, setNow] = useState<Date>(new Date());
-  const [totalTime, setTotalTime] = useState<number | null>(null);
-  const timerStartAt = useMemo(() => {
-    if (totalTime !== null) {
-      return new Date();
-    } else {
-      return null;
-    }
-  }, [totalTime]);
+  const totalTime = totalTimeSignal.value;
+  const timerStartAt = timerStartAtSignal.value;
 
   let remainingTime = "";
   if (totalTime !== null && timerStartAt !== null) {
@@ -47,9 +43,6 @@ export default function Timer() {
   function handleClose() {
     setOpen(false);
     setTimer(null);
-    if (isTaskOverSignal.value) {
-      setTotalTime(null);
-    }
   }
 
   function startTimer() {
@@ -57,7 +50,6 @@ export default function Timer() {
       const timerInt = parseInt(timer);
       const isInt = `${timerInt}` === timer;
       if (isInt) {
-        setTotalTime(timerInt);
         setTimer(null);
         setOpen(false);
         startTimerTask(timerInt);
@@ -69,7 +61,6 @@ export default function Timer() {
   }
 
   function stopTimer() {
-    setTotalTime(null);
     setTimer(null);
     setOpen(false);
     stopTimerTask();
@@ -92,20 +83,38 @@ export default function Timer() {
 
   return (
     <>
-      <ButtonBaseWithHover onClick={handleOpen}>
+      <IconButton onClick={handleOpen}>
         <TimerIcon fontSize="small" />
-      </ButtonBaseWithHover>
+      </IconButton>
       <Dialog
         open={open}
-        onClose={handleClose}
         transitionDuration={{
           exit: 300,
         }}
+        fullWidth={true}
       >
         <DialogTitle>
           <FormattedMessage defaultMessage="Timer" id="timer" />
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.2rem",
+          }}
+        >
           {totalTime === null ? (
             <></>
           ) : (
@@ -131,6 +140,8 @@ export default function Timer() {
             </>
           )}
           <TextField
+            fullWidth={true}
+            size="small"
             value={timer ?? ""}
             error={timer === ""}
             placeholder={intl.formatMessage({

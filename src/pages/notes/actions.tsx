@@ -1,4 +1,4 @@
-import { ButtonGroup } from "@mui/material";
+import { ButtonGroup, IconButton } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import HistoryIcon from "@mui/icons-material/History";
 import ShareIcon from "@mui/icons-material/Share";
@@ -11,7 +11,6 @@ import { useIntl } from "react-intl";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { addToPlaylist, formatNote, stop } from "../../store";
-import { ButtonBaseWithHover } from "../../components";
 
 export default function Actions({
   note,
@@ -93,20 +92,19 @@ export default function Actions({
       <ButtonGroup
         sx={{
           display: "flex",
-          gap: "0.5rem",
           flexWrap: "wrap",
         }}
       >
-        <ButtonBaseWithHover onClick={goHistory}>
+        <IconButton onClick={goHistory}>
           <HistoryIcon fontSize="small" />
-        </ButtonBaseWithHover>
-        <ButtonBaseWithHover onClick={() => onDeleteNote!(note)}>
+        </IconButton>
+        <IconButton onClick={() => onDeleteNote!(note)}>
           <DeleteForeverIcon fontSize="small" />
-        </ButtonBaseWithHover>
-        <ButtonBaseWithHover onClick={share}>
+        </IconButton>
+        <IconButton onClick={share}>
           <ShareIcon fontSize="small" />
-        </ButtonBaseWithHover>
-        <ButtonBaseWithHover
+        </IconButton>
+        <IconButton
           onClick={speak}
           disabled={isSpeaking}
           sx={
@@ -128,10 +126,10 @@ export default function Actions({
           }
         >
           <KeyboardVoiceIcon fontSize="small" />
-        </ButtonBaseWithHover>
-        <ButtonBaseWithHover onClick={add}>
+        </IconButton>
+        <IconButton onClick={add}>
           <PlaylistAddIcon fontSize="small" />
-        </ButtonBaseWithHover>
+        </IconButton>
       </ButtonGroup>
     </>
   );

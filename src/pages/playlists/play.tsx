@@ -1,7 +1,7 @@
-import { ButtonBaseWithHover } from "../../components";
 import { speak, stop } from "../../store";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
+import { IconButton } from "@mui/material";
 
 type PlayProps = {
   isSpeaking: boolean;
@@ -12,13 +12,13 @@ export default function Play({ isSpeaking, disabled }: PlayProps) {
   return (
     <>
       {isSpeaking ? (
-        <ButtonBaseWithHover onClick={stop} disabled={disabled}>
+        <IconButton onClick={stop} disabled={disabled}>
           <StopCircleIcon fontSize="small" />
-        </ButtonBaseWithHover>
+        </IconButton>
       ) : (
-        <ButtonBaseWithHover onClick={speak} disabled={disabled}>
+        <IconButton onClick={speak} disabled={disabled}>
           <PlayCircleOutlineIcon fontSize="small" />
-        </ButtonBaseWithHover>
+        </IconButton>
       )}
     </>
   );

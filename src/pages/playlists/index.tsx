@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Paper, TextField } from "@mui/material";
+import { Autocomplete, Box, IconButton, Paper, TextField } from "@mui/material";
 import {
   SpeakingModeProps,
   isSpeakingSignal,
@@ -13,7 +13,6 @@ import { FormattedMessage, useIntl } from "react-intl";
 import Play from "./play";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { ButtonBaseWithHover } from "../../components";
 import Timer from "./timer";
 
 export default function Playlists() {
@@ -29,20 +28,19 @@ export default function Playlists() {
           fontSize: "1.5rem",
           display: "flex",
           alignItems: "center",
-          gap: "0.5rem",
           padding: "0.5rem 0",
         }}
       >
         <Box>
           <FormattedMessage defaultMessage="Playlists" id="playlists" />
         </Box>
-        <ButtonBaseWithHover onClick={previous} disabled={disabled}>
+        <IconButton onClick={previous} disabled={disabled}>
           <SkipPreviousIcon fontSize="small" />
-        </ButtonBaseWithHover>
+        </IconButton>
         <Play isSpeaking={isSpeakingSignal.value} disabled={disabled} />
-        <ButtonBaseWithHover onClick={next} disabled={disabled}>
+        <IconButton onClick={next} disabled={disabled}>
           <SkipNextIcon fontSize="small" />
-        </ButtonBaseWithHover>
+        </IconButton>
         <Autocomplete
           disableClearable
           size="small"
