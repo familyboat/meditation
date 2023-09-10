@@ -5,6 +5,7 @@ import {
   NoteHistoryPath,
   NotePath,
   NotesPath,
+  RemoteNotesPath,
   SettingsPath,
   playlistsPath,
 } from "./constant";
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
           {
             path: HomePath,
             Component: lazy(() => import("./pages/home")),
+          },
+          {
+            path: RemoteNotesPath,
+            Component: lazy(() => import('./pages/notes/remoteNotes'))
           },
           {
             path: NotesPath,

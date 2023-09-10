@@ -145,5 +145,8 @@
     },
     "timer_total_time": {
         "defaultMessage": "定时器总时间是{totalTime}分钟。"
+    },
+    "remote_notes": {
+        "defaultMessage": "云端记事本"
     }
 }

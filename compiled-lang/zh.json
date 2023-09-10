@@ -179,6 +179,12 @@
       "value": "播放列表"
     }
   ],
+  "remote_notes": [
+    {
+      "type": 0,
+      "value": "云端记事本"
+    }
+  ],
   "settings": [
     {
       "type": 0,

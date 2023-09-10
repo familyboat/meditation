@@ -80,6 +80,9 @@
   "playlists": {
     "defaultMessage": "Playlists"
   },
+  "remote_notes": {
+    "defaultMessage": "remote notes"
+  },
   "settings": {
     "defaultMessage": "settings"
   },

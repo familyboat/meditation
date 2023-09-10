@@ -1,5 +1,6 @@
 import { ButtonGroup, IconButton } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import HistoryIcon from "@mui/icons-material/History";
 import ShareIcon from "@mui/icons-material/Share";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
@@ -87,6 +88,25 @@ export default function Actions({
     );
   }
 
+  async function post() {
+    const resp = await fetch('https://meditation-backend.deno.dev/notes', {
+      method: 'POST',
+      body: JSON.stringify(note),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    if (resp.ok) {
+      toast.info('Post successed', {
+        autoClose: 500
+      })
+    } else {
+      toast.error('Post failed', {
+        autoClose: 500
+      })
+    }
+  }
+
   return (
     <>
       <ButtonGroup
@@ -129,6 +149,11 @@ export default function Actions({
         </IconButton>
         <IconButton onClick={add}>
           <PlaylistAddIcon fontSize="small" />
+        </IconButton>
+        <IconButton
+          onClick={post}
+        >
+          <CloudUploadIcon fontSize="small" />
         </IconButton>
       </ButtonGroup>
     </>

@@ -161,6 +161,12 @@
       "value": "Playlists"
     }
   ],
+  "remote_notes": [
+    {
+      "type": 0,
+      "value": "remote notes"
+    }
+  ],
   "settings": [
     {
       "type": 0,
