@@ -49,3 +49,13 @@ export function debounce(fn: (...args: Array<unknown>) => void, wait: number) {
     setTimeout(later, wait);
   };
 }
+
+export function formatTimestamp(timestamp: number): [number, number, number] {
+  if (timestamp < 0) return [0, 0, 0];
+  const totalSeconds = Math.floor(timestamp / 1000);
+  const s = totalSeconds % 60;
+  const totalMinutes = (totalSeconds - s) / 60;
+  const m = totalMinutes % 60;
+  const h = (totalMinutes - m) / 60;
+  return [h, m, s];
+}

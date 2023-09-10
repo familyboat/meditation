@@ -103,5 +103,26 @@
   },
   "speaking_tip_part_two": {
     "defaultMessage": "Speaking immediately"
+  },
+  "start_timer": {
+    "defaultMessage": "start timer"
+  },
+  "stop_timer": {
+    "defaultMessage": "stop timer"
+  },
+  "timer": {
+    "defaultMessage": "Timer"
+  },
+  "timer_helpertext": {
+    "defaultMessage": "please type integer greater than 0"
+  },
+  "timer_placeholder": {
+    "defaultMessage": "Type total time in minutes"
+  },
+  "timer_remaining_time": {
+    "defaultMessage": "The remaining time is {remainingTime}."
+  },
+  "timer_total_time": {
+    "defaultMessage": "Total time is {totalTime} minutes."
   }
 }

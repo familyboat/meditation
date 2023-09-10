@@ -208,5 +208,63 @@
       "type": 0,
       "value": "Speaking immediately"
     }
+  ],
+  "start_timer": [
+    {
+      "type": 0,
+      "value": "start timer"
+    }
+  ],
+  "stop_timer": [
+    {
+      "type": 0,
+      "value": "stop timer"
+    }
+  ],
+  "timer": [
+    {
+      "type": 0,
+      "value": "Timer"
+    }
+  ],
+  "timer_helpertext": [
+    {
+      "type": 0,
+      "value": "please type integer greater than 0"
+    }
+  ],
+  "timer_placeholder": [
+    {
+      "type": 0,
+      "value": "Type total time in minutes"
+    }
+  ],
+  "timer_remaining_time": [
+    {
+      "type": 0,
+      "value": "The remaining time is "
+    },
+    {
+      "type": 1,
+      "value": "remainingTime"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "timer_total_time": [
+    {
+      "type": 0,
+      "value": "Total time is "
+    },
+    {
+      "type": 1,
+      "value": "totalTime"
+    },
+    {
+      "type": 0,
+      "value": " minutes."
+    }
   ]
 }

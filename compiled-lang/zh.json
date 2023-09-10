@@ -250,5 +250,63 @@
       "type": 0,
       "value": "即将朗读"
     }
+  ],
+  "start_timer": [
+    {
+      "type": 0,
+      "value": "开启定时"
+    }
+  ],
+  "stop_timer": [
+    {
+      "type": 0,
+      "value": "结束定时"
+    }
+  ],
+  "timer": [
+    {
+      "type": 0,
+      "value": "定时器"
+    }
+  ],
+  "timer_helpertext": [
+    {
+      "type": 0,
+      "value": "输入大于0的整数"
+    }
+  ],
+  "timer_placeholder": [
+    {
+      "type": 0,
+      "value": "输入定时器总时间，单位为分钟"
+    }
+  ],
+  "timer_remaining_time": [
+    {
+      "type": 0,
+      "value": "定时器还剩余"
+    },
+    {
+      "type": 1,
+      "value": "remainingTime"
+    },
+    {
+      "type": 0,
+      "value": "。"
+    }
+  ],
+  "timer_total_time": [
+    {
+      "type": 0,
+      "value": "定时器总时间是"
+    },
+    {
+      "type": 1,
+      "value": "totalTime"
+    },
+    {
+      "type": 0,
+      "value": "分钟。"
+    }
   ]
 }
